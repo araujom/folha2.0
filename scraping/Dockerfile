@@ -7,6 +7,7 @@ RUN apt-get update && \
     pip install PyVirtualDisplay xvfbwrapper selenium pymongo
 
 ADD ./scrap_records.py /scrap_records.py
+ADD ./config.py /config.py
 ADD ./geckodriver /usr/local/bin/geckodriver
 
 # Define default command.
