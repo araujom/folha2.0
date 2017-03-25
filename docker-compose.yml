@@ -1,0 +1,11 @@
+version: "2.0"
+services:
+    web_scrap:
+        build: "./scraping/"
+	depends_on:
+	    - mongo
+    mongo:
+        build: "./mongo/"
+        ports: 
+            - "27017:27017"
+            - "27018:27018"	
