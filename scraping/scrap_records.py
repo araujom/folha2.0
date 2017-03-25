@@ -11,7 +11,7 @@ import config
 
 class ScrapRecords(object):
     def __init__(self):
-        self.client = MongoClient('mongodb://pi2docker.local:27017/')
+        self.client = MongoClient('mongodb://mongo:27017/')
         self.db = self.client.Folha20
     def start(self):
         records_count = self.db.Folha20.count(True)
