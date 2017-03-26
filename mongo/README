@@ -1,2 +1,2 @@
 docker network create folha20Network
-docker run -d -p 27017:27017 --net folha20Network mongo
+docker run -d -p 27017:27017 --net folha20Network --name mongo mongo
