@@ -125,7 +125,8 @@ class ScrapRecords(object):
         record["fieldRecord"] = fieldRecord
         record["tags"] = self.find_tags_by_description_and_val(description, val)
         self.db.Record.insert_one(record)
-        #print record
+        print "Saved: ",
+        print record
 
     def find_tags_by_description_and_val(self, desc, val):
         recognized_tags = []
