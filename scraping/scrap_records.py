@@ -37,7 +37,7 @@ class ScrapRecords(object):
         ##
         display = Display(visible=0, size=(800, 600), use_xauth=False)
         display.start()
-        driver = webdriver.Firefox()
+        self.driver = webdriver.Firefox()
         ##
         #self.driver = webdriver.Firefox(executable_path='/Users/coiso/bin/geckodriver')
         ##
