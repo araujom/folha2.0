@@ -112,8 +112,8 @@ class ScrapRecords(object):
         else:
             valDate = datetime.datetime.strptime(rec[1], '%d-%m-%Y')
         description = rec[2]
-        val = float(rec[3].replace(",", "."))
-        balance = float(rec[4].replace(",", "."))
+        val = float(rec[3].replace(".", "").replace(",", "."))
+        balance = float(rec[4].replace(".", "").replace(",", "."))
 
         fieldRecord = {
                            "movDate": movDate,
