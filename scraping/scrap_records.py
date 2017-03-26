@@ -93,7 +93,7 @@ class ScrapRecords(object):
                 for pa in posterior_anterior:
                     if pa.get_attribute("value") == "Datas Anteriores":
                         pa.click()
-                        wait.until(expected_conditions.staleness_of(last_td))#esperar ate que a ultima tabela seja subtituida, i e, passe a stale
+                        self.wait.until(expected_conditions.staleness_of(last_td))#esperar ate que a ultima tabela seja subtituida, i e, passe a stale
                         condition = True
 
     def equal_records(self, rec1, rec2):
