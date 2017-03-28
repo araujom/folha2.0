@@ -1,3 +1,5 @@
+from encodings.punycode import selective_find
+
 from pyvirtualdisplay import Display
 from pymongo import MongoClient
 from selenium import webdriver
@@ -129,23 +131,29 @@ class ScrapRecords(object):
         print record
 
     def find_tags_by_description_and_val(self, desc, val):
-        recognized_tags = []
-        if val >= 0:
-            recognized_tags += ["ObjectId('58d65bbed869b07900dd296d')"]
-        else:
-            recognized_tags += ["ObjectId('58d65bbed869b07900dd296e')"]
-
         # get all tags
         if not hasattr(self, "tags"):
             self.tags = []
             for tag in self.db.Tag.find({}):
-                if tag["matrixRules"] is not  None:
+                if tag["matrixRules"] is not None:
                     self.tags += [tag]
         elif self.tags.__len__() != self.db.Tag.count(True):
             self.tags = []
             for tag in self.db.Tag.find({}):
                 if tag["matrixRules"] is not None:
                     self.tags += [tag]
+
+        recognized_tags = []
+        if len(self.tags) == 0:
+            entrou_id = self.db.Tag.insert_one({"name": "Entrou", "matrixRules": []}).inserted_id
+            saiu_id = self.db.Tag.insert_one({"name": "Saiu", "matrixRules": []}).inserted_id
+        else:
+            entrou_id = self.db.Tag.find({"name": "Entrou"}).next()["_id"]
+            saiu_id = self.db.Tag.find({"name": "Saiu"}).next()["_id"]
+        if val >= 0:
+            recognized_tags += [entrou_id]
+        else:
+            recognized_tags += [saiu_id]
 
         for tag in self.tags:
             for rules in tag["matrixRules"]:

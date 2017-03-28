@@ -1,4 +1,4 @@
-- no web scrap verificar sempre se as tag fixas existem. Caso nao exita criar. Devem ser usada como tags fixas as criadas nas altura por isso procurar pelo nome para encontra o id
+√       - no web scrap verificar sempre se as tag fixas existem. Caso nao exita criar. Devem ser usada como tags fixas as criadas nas altura por isso procurar pelo nome para encontra o id
 - mudar comando de inicio do container da base de dado para que criar uma pasta partilhada em folha20/mongo/shared. Adicionar todo o conteúdo desta pasta ao .gitignore 
 - criar script para o base dado para antes de inciar a base de dados verifique se existe backup pasta partilhada caso exita backup na pasta partilha faça restauro
 	https://www.digitalocean.com/community/tutorials/how-to-back-up-restore-and-migrate-a-mongodb-database-on-ubuntu-14-04 
