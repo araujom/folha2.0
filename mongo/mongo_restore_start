@@ -1,0 +1,4 @@
+#bin/bash
+
+mongorestore --drop /tmp/shared/mongobackup/
+mongod

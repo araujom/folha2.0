@@ -9,9 +9,10 @@ VOLUME ["/data/db"]
 
 # Define working directory.
 WORKDIR /data
+ADD ./mongo_restore_start /data/mongo_restore_start
 
 # Define default command.
-CMD ["mongod"]
+CMD ["mongo_restore_start"]
 
 # Expose ports.
 #   - 27017: process
