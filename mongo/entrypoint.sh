@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIRECTORY= "/restore/mongobackup"
+DIRECTORY="/restore/mongobackup"
 if [ -d "$DIRECTORY" ]; then
     echo "Restoring: "
     mongorestore --drop $DIRECTORY
