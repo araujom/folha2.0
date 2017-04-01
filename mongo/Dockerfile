@@ -3,18 +3,20 @@ FROM resin/rpi-raspbian:latest
 # Install MongoDB.
 RUN apt-get update && \  
     apt-get -y install mongodb-server 
+RUN mkdir -p /restore
 
 # Define mountable directories.
 VOLUME ["/data/db"]
 
+
 # Define working directory.
-WORKDIR /data
 ADD ./entrypoint.sh /entrypoint.sh
+ADD ./shared/mongobackup /restore/mongobackup
 
 ENTRYPOINT /entrypoint.sh
 
 # Define default command.
-CMD mongorestore --drop /tmp/shared/mongobackup
+CMD mongod
 
 # Expose ports.
 #   - 27017: process
