@@ -4,3 +4,4 @@ docker run -d -v `pwd`/shared:/tmp/shared -p 27017:27017 --net folha20Network --
 
 
 mongodump --out /tmp/shared/mongobackup
+mongorestore --drop /data/mongobackup
