@@ -9,9 +9,12 @@ VOLUME ["/data/db"]
 
 # Define working directory.
 WORKDIR /data
+ADD ./entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT /entrypoint.sh
 
 # Define default command.
-CMD ["mongorestore", "--drop", "/tmp/shared/mongobackup/", "&&", "mongod"]
+CMD mongorestore --drop /tmp/shared/mongobackup
 
 # Expose ports.
 #   - 27017: process
