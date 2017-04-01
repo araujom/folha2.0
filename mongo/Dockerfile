@@ -11,12 +11,14 @@ VOLUME ["/data/db"]
 
 # Define working directory.
 ADD ./entrypoint.sh /entrypoint.sh
+ADD ./onstartup.sh /onstartup.sh
 ADD ./shared/mongobackup /restore/mongobackup
+
 
 ENTRYPOINT /entrypoint.sh
 
 # Define default command.
-#CMD mongod
+CMD /onstartup.sh
 
 # Expose ports.
 #   - 27017: process
