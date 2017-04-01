@@ -1,5 +1,5 @@
 #!/bin/bash
 
-mongod
+mongod &
 
 exec $@
