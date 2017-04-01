@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mongod
+
 DIRECTORY="/restore/mongobackup"
 if [ -d "$DIRECTORY" ]; then
     echo "Restoring: "

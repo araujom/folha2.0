@@ -16,7 +16,7 @@ ADD ./shared/mongobackup /restore/mongobackup
 ENTRYPOINT /entrypoint.sh
 
 # Define default command.
-CMD mongod
+#CMD mongod
 
 # Expose ports.
 #   - 27017: process
