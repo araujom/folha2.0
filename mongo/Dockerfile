@@ -8,7 +8,7 @@ RUN mkdir /bakup
 # Define mountable directories.
 VOLUME /data/db
 
-ADD ./bakup/mongobackup /bakup/mongobackup
+ADD ./backup/mongobackup /backup/mongobackup
 ADD ./entrypoint.sh /entrypoint.sh
 ENTRYPOINT /entrypoint.sh
 
