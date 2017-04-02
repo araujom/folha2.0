@@ -10,7 +10,7 @@ VOLUME /data/db
 
 #ENTRYPOINT /entrypoint.sh
 
-ADD ./backup/mongobackup /backup/mongobackup
+ADD ./backup/mongobackup /mongobackup
 ADD ./init_mongo.sh /init_mongo.sh
 
 # Define default command.
