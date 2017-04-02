@@ -1,7 +1,7 @@
 #!/bin/bash
 mongod &
 sleep 5
-DIRECTORY="/data/mongobackup"
+DIRECTORY="/bakup/mongobackup"
 if [ -d "$DIRECTORY" ]; then
     echo "Restoring: "
     mongorestore --drop $DIRECTORY

@@ -1,7 +1,7 @@
 docker network create folha20Network
 docker build -t mongo .
-docker run -d -v `pwd`/data:/data -p 27017:27017 --net folha20Network --name mongo mongo
+docker run -d -v `pwd`/bakup:/bakup -p 27017:27017 --net folha20Network --name mongo mongo
 
 
 mongodump --out /tmp/shared/mongobackup
-mongorestore --drop /data/mongobackup
+mongorestore --drop /bakup/mongobackup
