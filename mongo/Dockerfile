@@ -8,13 +8,12 @@ RUN mkdir /bakup
 # Define mountable directories.
 VOLUME /data/db
 
-#ENTRYPOINT /entrypoint.sh
-
 ADD ./backup/mongobackup /mongobackup
-ADD ./init_mongo.sh /init_mongo.sh
+ADD ./entrypoint.sh /entrypoint.sh
+ENTRYPOINT /entrypoint.sh
 
 # Define default command.
-CMD /init_mongo.sh
+CMD mongod
 
 # Expose ports.
 #   - 27017: process
