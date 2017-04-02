@@ -63,5 +63,13 @@ class Test(object):
         return recognized_tags
 
 a = Test()
-print a.find_tags_by_description_and_val(u'31/12 COMPRA ELEC 3971186/38 PRIO ENERGY - MIRA SMIRA SINTRA', 20)
+#print a.find_tags_by_description_and_val(u'31/12 COMPRA ELEC 3971186/38 PRIO ENERGY - MIRA SMIRA SINTRA', 20)
 
+
+client = MongoClient('mongodb://pi2docker.local:27017/')
+db = client.Folha20
+db.Tag.insert_one({"name": "Entrou", "matrixRules": []})
+db.Tag.insert_one({"name": "Saiu", "matrixRules": []})
+db.Tag.insert_one({"name": "Gota", "matrixRules": [["COMPRA ELEC", "PRIO ENERGY" ]]})
+db.Tag.insert_one({"name": "Mercearia", "matrixRules": [["COMPRA ELEC", "MINIPRECO RIO MOURO" ],
+                                                        ["COMPRA ELEC", "JUMBO DE SINTRA MEM MARTINS"]]})
