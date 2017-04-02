@@ -5,3 +5,4 @@ docker run -d -v `pwd`/backup:/backup -p 27017:27017 --net folha20Network --name
 
 mongodump --out /backup/mongobackup
 mongorestore --drop /backup/mongobackup
+exec $@

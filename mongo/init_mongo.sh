@@ -9,4 +9,4 @@ if [ -d "$DIRECTORY" ]; then
 else
     echo "NO DIR!!!"
 fi
-exec $@
+
