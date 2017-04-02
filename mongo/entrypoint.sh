@@ -9,4 +9,5 @@ if [ -d "$DIRECTORY" ]; then
 else
     echo "NO DIR!!!"
 fi
+mongod --dbpath /data/db/ --shutdown
 exec $@
