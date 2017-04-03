@@ -7,7 +7,7 @@ RUN mkdir /bakup
 ADD ./backup/mongobackup /mongobackup
 ADD ./restoredata.sh /restoredata.sh
 #RUN restoredata.sh
-RUN /bin/bash -c  "/usr/bin/mongod &" && \
+RUN /bin/bash -c  "/etc/init.d/mongod start" && \
  	 sleep 5 && \
 	 mongorestore --drop /mongobackup
 
