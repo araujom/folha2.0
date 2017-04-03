@@ -7,18 +7,20 @@ RUN mkdir /bakup
 ADD ./backup/mongobackup /mongobackup
 ADD ./restoredata.sh /restoredata.sh
 #RUN restoredata.sh
-RUN service mongodb start && \
+RUN /bin/bash -c  "service mongodb start" && \
  	 sleep 5 && \
-	 mongorestore --drop /mongobackup && \
-	 service mongodb stop
+	 mongorestore --drop /mongobackup #&& \
+#	 service mongodb stop
 
 # Define mountable directories.
 VOLUME /data/db
 
 # ENTRYPOINT /entrypoint.sh
+ENTRYPOINT /bin/bash -c  "service mongodb start"
 
 # Define default command.
-CMD mongod
+#CMD mongod
+CMD ["true"]
 
 # Expose ports.
 #   - 27017: process
