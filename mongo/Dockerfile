@@ -7,9 +7,10 @@ RUN mkdir /bakup
 ADD ./backup/mongobackup /mongobackup
 ADD ./restoredata.sh /restoredata.sh
 RUN restoredata.sh
-#RUN /bin/bash -c  "service mongodb start" && \
-# 	 sleep 5 && \
-#	 mongorestore --drop /mongobackup
+RUN service mongodb start && \
+ 	 sleep 5 && \
+	 mongorestore --drop /mongobackup && \
+	 service mongodb stop
 
 # Define mountable directories.
 VOLUME /data/db
