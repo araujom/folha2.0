@@ -6,8 +6,8 @@ RUN apt-get -y install mongodb-server
 RUN mkdir /bakup
 ADD ./backup/mongobackup /mongobackup
 ADD ./restoredata.sh /restoredata.sh
-RUN restoredata.sh
-
+#RUN restoredata.sh
+RUN "mongod &" && mongorestore --drop /mongobackup
 
 # Define mountable directories.
 VOLUME /data/db
