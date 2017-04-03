@@ -1,6 +1,6 @@
 #!/bin/bash
-set -e 
-mongod &
+
+/etc/init.d/mongod start
 sleep 5
 DIRECTORY="/mongobackup"
 if [ -d "$DIRECTORY" ]; then
@@ -10,3 +10,4 @@ if [ -d "$DIRECTORY" ]; then
 else
     echo "NO DIR!!!"
 fi
+/etc/init.d/mongod stop
