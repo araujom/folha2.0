@@ -4,13 +4,15 @@ FROM resin/rpi-raspbian:latest
 RUN apt-get update
 RUN apt-get -y install mongodb-server
 RUN mkdir /bakup
+ADD ./backup/mongobackup /mongobackup
+ADD ./restoredata.sh /restoredata.sh
+RUN restoredata.sh
+
 
 # Define mountable directories.
 VOLUME /data/db
 
-ADD ./backup/mongobackup /mongobackup
-ADD ./entrypoint.sh /entrypoint.sh
-ENTRYPOINT /entrypoint.sh
+# ENTRYPOINT /entrypoint.sh
 
 # Define default command.
 CMD mongod
