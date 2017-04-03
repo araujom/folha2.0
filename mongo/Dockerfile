@@ -6,7 +6,7 @@ RUN apt-get -y install mongodb-server
 RUN mkdir /bakup
 ADD ./backup/mongobackup /mongobackup
 ADD ./restoredata.sh /restoredata.sh
-RUN restoredata.sh
+#RUN restoredata.sh
 RUN service mongodb start && \
  	 sleep 5 && \
 	 mongorestore --drop /mongobackup && \
