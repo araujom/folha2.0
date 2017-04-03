@@ -7,7 +7,8 @@ RUN mkdir /bakup
 ADD ./backup/mongobackup /mongobackup
 ADD ./restoredata.sh /restoredata.sh
 #RUN restoredata.sh
-RUN "mongod &" && mongorestore --drop /mongobackup
+RUN /bin/bash -c  "/usr/bin/mongod &" && \
+	 mongorestore --drop /mongobackup
 
 # Define mountable directories.
 VOLUME /data/db
