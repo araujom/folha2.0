@@ -6,10 +6,10 @@ RUN apt-get -y install mongodb-server
 RUN mkdir /bakup
 ADD ./backup/mongobackup /mongobackup
 ADD ./restoredata.sh /restoredata.sh
-#RUN restoredata.sh
-RUN /bin/bash -c  "service mongodb start" && \
- 	 sleep 5 && \
-	 mongorestore --drop /mongobackup
+RUN restoredata.sh
+#RUN /bin/bash -c  "service mongodb start" && \
+# 	 sleep 5 && \
+#	 mongorestore --drop /mongobackup
 
 # Define mountable directories.
 VOLUME /data/db
