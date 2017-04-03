@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 mongod &
 sleep 5
 DIRECTORY="/mongobackup"
