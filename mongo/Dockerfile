@@ -8,6 +8,7 @@ ADD ./backup/mongobackup /mongobackup
 ADD ./restoredata.sh /restoredata.sh
 #RUN restoredata.sh
 RUN /bin/bash -c  "/usr/bin/mongod &" && \
+ 	 sleep 5 && \
 	 mongorestore --drop /mongobackup
 
 # Define mountable directories.
