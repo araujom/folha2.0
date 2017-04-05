@@ -3,4 +3,4 @@ based on:
 https://getcarina.com/docs/tutorials/schedule-tasks-cron/
 http://stackoverflow.com/questions/27721178/is-it-possible-to-create-a-docker-container-that-contains-one-or-more-containers/27721929#27721929
 
-docker run -d --name croncontainer --privileged=true croncontainer
+docker run -d --name croncontainer -v /var/run/docker.sock:/var/run/docker.sock croncontainer

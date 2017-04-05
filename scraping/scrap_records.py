@@ -15,6 +15,7 @@ class ScrapRecords(object):
     def __init__(self):
         self.client = MongoClient('mongodb://mongo:27017/')
         self.db = self.client.Folha20
+        self.db.SyncJournal.insert_one({"date": datetime.datetime.now(), "comment": "automated"})
     def start(self):
         records_count = self.db.Folha20.count(True)
         if records_count == 0:
@@ -170,4 +171,3 @@ class ScrapRecords(object):
 
 if __name__ == "__main__":
     ScrapRecords().start()
-
