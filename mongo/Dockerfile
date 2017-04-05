@@ -5,7 +5,7 @@ RUN apt-get update
 RUN apt-get -y install mongodb-server
 
 ADD ./entrypoint.sh /entrypoint.sh
-ENTRYPOINT /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
 
 # Define default command.
 CMD mongod
