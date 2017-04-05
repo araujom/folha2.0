@@ -1,4 +1,6 @@
 
 based on:
-https://www.tddapps.com/2017/02/18/how-to-run-any-container-on-a-schedule/
 https://getcarina.com/docs/tutorials/schedule-tasks-cron/
+http://stackoverflow.com/questions/27721178/is-it-possible-to-create-a-docker-container-that-contains-one-or-more-containers/27721929#27721929
+
+docker run -d --name croncontainer --privileged=true croncontainer
