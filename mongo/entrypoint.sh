@@ -7,4 +7,4 @@ if [ -d "$DIRECTORY" ]; then
 else
   echo "No Restore needed"
 fi
-exec $@
+exec "$@"
