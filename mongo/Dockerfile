@@ -4,11 +4,11 @@ FROM resin/rpi-raspbian:latest
 RUN apt-get update
 RUN apt-get -y install mongodb-server
 
-# ENTRYPOINT ["/entrypoint.sh"]
+ADD ./entrypoint.sh /entrypoint.sh
+ENTRYPOINT /entrypoint.sh
 
 # Define default command.
-ADD ./run.sh /run.sh
-CMD /run.sh
+CMD mongod
 
 # Expose ports.
 EXPOSE 28017
