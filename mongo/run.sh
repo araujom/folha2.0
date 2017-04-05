@@ -1,4 +1,4 @@
 #!/bin/sh
 chown -R root:root data/db
-mongodb mongod --repair 
+mongodb mongod --repair --dbpath /data/db
 mongod
