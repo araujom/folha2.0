@@ -7,7 +7,7 @@ RUN apt-get -y install mongodb-server
 # ENTRYPOINT ["/entrypoint.sh"]
 
 # Define default command.
-ADD ./run.sh /run.sh
+COPY ./run.sh /run.sh
 CMD /run.sh
 
 # Expose ports.
