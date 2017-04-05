@@ -1,2 +1,4 @@
 
-mongorestore --drop /tmp/shared/mongobackup/
+based on:
+https://www.tddapps.com/2017/02/18/how-to-run-any-container-on-a-schedule/
+https://getcarina.com/docs/tutorials/schedule-tasks-cron/
