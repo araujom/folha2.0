@@ -1,2 +1,7 @@
 #!/bin/sh
-docker start web_scrap
+if [[ $(docker ps -q -f name=web_scrap) ]]; then
+  docker kill web_scrap
+  docker start web_scrap
+else
+  docker start web_scrap
+fi

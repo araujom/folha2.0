@@ -1,6 +1,6 @@
 
 based on:
 https://getcarina.com/docs/tutorials/schedule-tasks-cron/
-http://stackoverflow.com/questions/27721178/is-it-possible-to-create-a-docker-container-that-contains-one-or-more-containers/27721929#27721929
+https://forums.docker.com/t/access-to-docker-command-from-host-inside-a-container-with-java-program/28300/2
 
 docker run -d --name croncontainer -v /var/run/docker.sock:/var/run/docker.sock croncontainer

@@ -15,7 +15,7 @@ class ScrapRecords(object):
     def __init__(self):
         self.client = MongoClient('mongodb://mongo:27017/')
         self.db = self.client.Folha20
-        self.db.SyncJournal.insert_one({"date": datetime.datetime.now(), "comment": "automated"})
+
     def start(self):
         records_count = self.db.Folha20.count(True)
         if records_count == 0:
@@ -23,6 +23,7 @@ class ScrapRecords(object):
         else:
             last_registred_record = self.db.Record.find().sort("_id", -1).limit(1).next()
             self.update_record(last_registred_record["originalRecord"])
+        self.db.SyncJournal.insert_one({"date": datetime.datetime.now(), "newEntries": len(self.movimentos)})
 
     def find_element_wait_if_needed(self, element_xpath):
         self.wait.until(
@@ -63,6 +64,7 @@ class ScrapRecords(object):
         self.driver.switch_to.frame(self.find_element_wait_if_needed('/html/frameset/frameset/frame[1]'))
         self.find_element_wait_if_needed('//*[@id="submenu1"]/a[1]').click()
 
+        self.movimentos = []
         condition = True
         while condition:
             self.driver.switch_to.default_content()
@@ -83,7 +85,8 @@ class ScrapRecords(object):
                 last_td = tds[-1]
                 if not self.equal_records(movimento, last_registred_record):
                     print movimento
-                    self.save_new_record(movimento)
+                    self.movimentos += [movimento]
+
                 else:
                     break
 
@@ -98,6 +101,11 @@ class ScrapRecords(object):
                         pa.click()
                         self.wait.until(expected_conditions.staleness_of(last_td))#esperar ate que a ultima tabela seja subtituida, i e, passe a stale
                         condition = True
+                        
+        #save on reversed order
+        for movimento in reversed(self.movimentos):
+            self.save_new_record(movimento)
+
 
     def equal_records(self, rec1, rec2):
         if rec1 is None or rec2 is None:
