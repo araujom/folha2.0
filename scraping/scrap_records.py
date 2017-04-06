@@ -83,7 +83,7 @@ class ScrapRecords(object):
             )
             rows = self.find_elements_wait_if_needed('//*[@id="form_mov"]/table/tbody/tr[7]/td/table/tbody/tr[1]/td[2]/table/tbody/tr')
             row_count = len(rows)
-
+            last_record_reached = False
             last_td = None
             for i in range(2, row_count+1):
                 element_xpath = '//*[@id="form_mov"]/table/tbody/tr[7]/td/table/tbody/tr[1]/td[2]/table/tbody/tr[%s]/td' % i
@@ -95,11 +95,10 @@ class ScrapRecords(object):
                 if not self.equal_records(movimento, last_registred_record):
                     print movimento
                     self.movimentos += [movimento]
-
                 else:
+                    last_record_reached = True
                     break
-
-            if self.equal_records(movimento, last_registred_record):
+            if last_record_reached:
                 condition = False
             else:
                 #paginas anteriores

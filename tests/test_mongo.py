@@ -16,10 +16,20 @@ client = MongoClient('mongodb://pi2docker.local:27017/')
 #    print a
 #print a_s.next()
 
+def equal_records(rec1, rec2):
+    if rec1 is None or rec2 is None:
+        return False
+    if rec1[0] == rec2[0] and rec1[2] == rec2[2] and rec1[3] == rec2[3] and rec1[4] == rec2[4]:
+        return True
+    else:
+        return False
 
+last    = [u"02-01-2017", u'31-12-2016', u'31/12 COMPRA ELEC 9935593/38 JUMBO DE SINTRA MEM MARTINS', u'-76,21', u'752,84']
+current = [u'02-01-2017', u'31-12-2016', u'31/12 COMPRA ELEC 9935593/38 JUMBO DE SINTRA MEM MARTINS', u'-76,21', u'752,84']
+print equal_records(last, current)
 
-db = client.Folha20
-db.SyncJournal.insert_one({"date": datetime.datetime.now(), "comment": "manual"})
+#db = client.Folha20
+#db.SyncJournal.insert_one({"date": datetime.datetime.now(), "comment": "manual"})
 
 class Test(object):
     def __init__(self):
@@ -73,4 +83,4 @@ a = Test()
 #db.Tag.insert_one({"name": "Saiu", "matrixRules": []})
 #db.Tag.insert_one({"name": "Gota", "matrixRules": [["COMPRA ELEC", "PRIO ENERGY" ]]})
 #db.Tag.insert_one({"name": "Mercearia", "matrixRules": [["COMPRA ELEC", "MINIPRECO RIO MOURO" ],
-                                                        ["COMPRA ELEC", "JUMBO DE SINTRA MEM MARTINS"]]})
+#                                                        ["COMPRA ELEC", "JUMBO DE SINTRA MEM MARTINS"]]})
