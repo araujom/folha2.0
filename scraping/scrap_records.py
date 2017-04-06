@@ -1,7 +1,7 @@
 from encodings.punycode import selective_find
 
 ##
-# from pyvirtualdisplay import Display
+from pyvirtualdisplay import Display
 ##
 ##
 from pymongo import MongoClient
@@ -17,9 +17,9 @@ import config
 class ScrapRecords(object):
     def __init__(self):
         ##
-        #self.client = MongoClient('mongodb://mongo:27017/')
+        self.client = MongoClient('mongodb://mongo:27017/')
         ##
-        self.client = MongoClient('mongodb://pi2docker.local:27017/')
+        #self.client = MongoClient('mongodb://pi2docker.local:27017/')
         ##
         self.db = self.client.Folha20
 
@@ -46,12 +46,12 @@ class ScrapRecords(object):
 
     def update_record(self, last_registred_record):
         ##
-        #display = Display(visible=0, size=(800, 600), use_xauth=False)
-        #display.start()
-        #self.driver = webdriver.Firefox()
+        display = Display(visible=0, size=(800, 600), use_xauth=False)
+        display.start()
+        self.driver = webdriver.Firefox()
         ##
         #self.driver = webdriver.Firefox(executable_path='/Users/coiso/bin/geckodriver')
-        self.driver = webdriver.Chrome('/Users/coiso/node_modules/appium/node_modules/appium-chromedriver/chromedriver/mac/chromedriver')
+        #self.driver = webdriver.Chrome('/Users/coiso/node_modules/appium/node_modules/appium-chromedriver/chromedriver/mac/chromedriver')
         #
         ##
         self.wait = WebDriverWait(self.driver, 10)
