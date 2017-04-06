@@ -3,4 +3,4 @@ based on:
 https://getcarina.com/docs/tutorials/schedule-tasks-cron/
 https://forums.docker.com/t/access-to-docker-command-from-host-inside-a-container-with-java-program/28300/2
 
-docker run -d --name croncontainer -v /var/run/docker.sock:/var/run/docker.sock croncontainer
+docker run -d --name croncontainer -v /var/run/docker.sock:/var/run/docker.sock croncontainer

@@ -1,2 +1,2 @@
-docker build -t web_scrap . 
-docker run -t --net folha20Network --name web_scrap  web_scrap
+docker build -t web_scrap .
+docker run -d --net folha20Network --name web_scrap  web_scrap
