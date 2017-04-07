@@ -24,7 +24,7 @@ class ScrapRecords(object):
         self.db = self.client.Folha20
 
     def start(self):
-        records_count = self.db.Folha20.count(True)
+        records_count = self.db.get_collection("Record").count({})
         if records_count == 0:
             self.update_record(None)
         else:
