@@ -29,8 +29,8 @@ class ScrapRecords(object):
             self.update_record(None)
         else:
             last_registred_record = self.db.Record.find().sort("_id", -1).limit(1).next()
-            self.update_record(last_registred_record["originalRecord"])
-        self.db.SyncJournal.insert_one({"date": datetime.datetime.now(), "newEntries": len(self.movimentos)})
+            self.update_record(last_registred_record)
+        self.db.SyncJournal.insert_one({"date": datetime.datetime.now(), "newEntries": len(self.records)})
 
     def find_element_wait_if_needed(self, element_xpath):
         self.wait.until(
@@ -73,7 +73,7 @@ class ScrapRecords(object):
         self.driver.switch_to.frame(self.find_element_wait_if_needed('/html/frameset/frameset/frame[1]'))
         self.find_element_wait_if_needed('//*[@id="submenu1"]/a[1]').click()
 
-        self.movimentos = []
+        self.records = []
         condition = True
         while condition:
             self.driver.switch_to.default_content()
@@ -92,9 +92,10 @@ class ScrapRecords(object):
                 for td in tds:
                     movimento += [td.text]
                 last_td = tds[-1]
-                if not self.equal_records(movimento, last_registred_record):
+                record = self.creat_record(movimento)
+                if not self.equal_records(record, last_registred_record):
                     print movimento
-                    self.movimentos += [movimento]
+                    self.records += [records]
                 else:
                     last_record_reached = True
                     break
@@ -111,37 +112,40 @@ class ScrapRecords(object):
                         condition = True
                         
         #save on reversed order
-        for movimento in reversed(self.movimentos):
-            self.save_new_record(movimento)
+        for record in reversed(self.records):
+            self.save_new_record(record)
 
 
     def equal_records(self, rec1, rec2):
         if rec1 is None or rec2 is None:
             return False
-        if rec1[0] == rec2[0] and rec1[2] == rec2[2] and rec1[3] == rec2[3] and rec1[4] == rec2[4]:
+        if rec1["movDate"] == rec2["movDate"] and \
+                        rec1["description"] == rec2["description"] and \
+                        rec1["val"] == rec2["val"] and \
+                        rec1["balance"] == rec2["balance"]:
             return True
         else:
             return False
-
-    def save_new_record(self, rec):
-        record = {"originalRecord": rec}
-        movDate = datetime.datetime.strptime(rec[0], '%d-%m-%Y')
-        if rec[1].strip() == '':
+    def creat_record(self, mov):
+        movDate = datetime.datetime.strptime(mov[0], '%d-%m-%Y')
+        if mov[1].strip() == '':
             valDate = None
         else:
-            valDate = datetime.datetime.strptime(rec[1], '%d-%m-%Y')
-        description = rec[2]
-        val = float(rec[3].replace(".", "").replace(",", "."))
-        balance = float(rec[4].replace(".", "").replace(",", "."))
+            valDate = datetime.datetime.strptime(mov[1], '%d-%m-%Y')
+        description = mov[2]
+        val = float(mov[3].replace(".", "").replace(",", "."))
+        balance = float(mov[4].replace(".", "").replace(",", "."))
 
-        fieldRecord = {
-                           "movDate": movDate,
-                           "valDate": valDate,
-                       "description": description,
-                               "val": val,
-                           "balance": balance
-                      }
-        record["fieldRecord"] = fieldRecord
+        record = {
+            "movDate": movDate,
+            "valDate": valDate,
+            "description": description,
+            "val": val,
+            "balance": balance
+        }
+        return record
+
+    def save_new_record(self, record):
         record["tags"] = self.find_tags_by_description_and_val(description, val)
         self.db.Record.insert_one(record)
         print "Saved: ",

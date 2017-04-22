@@ -1,1 +1,5 @@
+npm install //get all package need
+node --inspect app.js //debug no chrome
+nodemon //run app.js but restart on every file save 
+
 docker build -t ws-node .

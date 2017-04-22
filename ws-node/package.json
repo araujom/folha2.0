@@ -1,0 +1,16 @@
+{
+  "name": "folha20-api",
+  "version": "1.0.0",
+  "description": "Folha2.0 api ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies":{
+    "express":"*",
+    "body-parser":"*",
+    "mongoose":"*"
+  },
+  "author": "",
+  "license": "GPL-3.0"
+}
