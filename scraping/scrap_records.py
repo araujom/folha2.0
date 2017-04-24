@@ -146,7 +146,7 @@ class ScrapRecords(object):
         return record
 
     def save_new_record(self, record):
-        record["tags"] = self.find_tags_by_description_and_val(description, val)
+        record["tags"] = self.find_tags_by_description_and_val(record["description"], record["val"])
         self.db.Record.insert_one(record)
         print "Saved: ",
         print record
