@@ -95,7 +95,7 @@ class ScrapRecords(object):
                 record = self.creat_record(movimento)
                 if not self.equal_records(record, last_registred_record):
                     print movimento
-                    self.records += [records]
+                    self.records += [record]
                 else:
                     last_record_reached = True
                     break
