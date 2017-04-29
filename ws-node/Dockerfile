@@ -12,3 +12,5 @@ COPY nodefiles/ /
 WORKDIR /nodefiles
 
 CMD ["cd nodefiles && node app.js"]
+
+EXPOSE 3000
