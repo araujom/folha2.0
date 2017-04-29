@@ -9,7 +9,8 @@
   "dependencies":{
     "express":"*",
     "body-parser":"*",
-    "mongoose":"*"
+    "mongoose":"*",
+    "mongoose-deep-populate":"*" 
   },
   "author": "",
   "license": "GPL-3.0"
