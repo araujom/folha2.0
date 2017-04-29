@@ -3,3 +3,4 @@ node --inspect app.js //debug no chrome
 nodemon //run app.js but restart on every file save 
 
 docker build -t ws-node .
+docker run -d --net folha20Network --name ws-node  ws-node
