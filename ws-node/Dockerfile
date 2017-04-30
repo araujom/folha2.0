@@ -1,3 +1,3 @@
-FROM node:4-onbuild
+FROM hypriot/node:onbuild
 
 EXPOSE  3000
