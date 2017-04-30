@@ -1,3 +1,3 @@
-FROM node:4-onbuild
+FROM node:armhf
 
 EXPOSE  3000
