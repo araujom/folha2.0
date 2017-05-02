@@ -17,6 +17,11 @@ app.get('/', function(req, res) {
   res.send("Not a valid endpoint!")
 });
 
+app.all('/records', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+ });
 app.get('/records', function(req, res) {
     var amount = 10;
     var page = req.query.page ? req.query.page : 0;
@@ -30,6 +35,11 @@ app.get('/records', function(req, res) {
   },skip, amount);
 });
 
+app.all('/tags', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+ });
 app.get('/tags', function(req, res) {
     Tag.getTags(function(err, tags){
         if (err) {
@@ -40,6 +50,11 @@ app.get('/tags', function(req, res) {
   });
 });
 
+app.all('/syncJournal', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+ });
 app.get('/syncJournal', function(req, res) {
     SyncJournal.getSyncJournal(function(err, journal){
         if (err) {
@@ -50,6 +65,11 @@ app.get('/syncJournal', function(req, res) {
   });
 });
 
+app.all('/tagStats', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+ });
 app.get('/tagStats', function(req, res) {
     var tagId = req.query.tagId;
     var timestampform = req.query.from;
